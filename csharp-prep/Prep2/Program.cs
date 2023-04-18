@@ -9,7 +9,7 @@ class Program
         while (true)
         {
             try
-            { 
+            {
                 Console.Write("What is the percentage score for your class ( 0 - 100 )? ");
                 grade_percent = int.Parse(Console.ReadLine());
 
@@ -22,7 +22,7 @@ class Program
                     Console.WriteLine("Your Input was not in the expected range.");
                 }
             }
-            catch ()
+            catch (FormatException)
             {
                 Console.WriteLine("the input was not in the correct format. Integers only.");
             }
