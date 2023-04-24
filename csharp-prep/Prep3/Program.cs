@@ -4,26 +4,14 @@ class Program
 {
     static void Main(string[] args)
     {
+        Random rnd = new Random();
         int magic_number;
         int guess_number;
 
         while (true)
         {
-            while (true)
-            {
-                try
-                {
-                    Console.Write("What is the magic number? ");
-                    magic_number = int.Parse(Console.ReadLine());
+            magic_number = rnd.Next(0, 101);
 
-                    break;
-                }
-                catch (FormatException)
-                {
-                    Console.WriteLine("the input was not in the correct format. Integers only.");
-                }
-            }
-            
             int count = 0;
             while (true)
             {
