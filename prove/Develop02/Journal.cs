@@ -1,15 +1,11 @@
 public class Journal
 {
+    csvEditor CSVE = new csvEditor();
+    
     // attributes
     private List<Entry> _oldJournal;
     private List<Entry> _newJournal;
 
-    // constructor
-    public Journal(List<Entry> oldJournal, List<Entry> newJournal)
-    {
-        _oldJournal = oldJournal;
-        _newJournal = newJournal;
-    }
 
     // methods
     // Displays information to terminal
