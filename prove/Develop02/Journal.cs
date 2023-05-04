@@ -25,4 +25,11 @@ public class Journal
             i.display();
         }
     }
+
+    // Adds an entry to the journal
+    public void addEntry(string prompt, string entry)
+    {
+        Entry i = new Entry(prompt, entry, DateTime.Now);
+        _newJournal.Add(i);
+    }
 }

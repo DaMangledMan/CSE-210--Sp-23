@@ -54,19 +54,22 @@ public class Main
     // option 5: quit
     public void Quit()
     {
-        
+        Environment.Exit(1);
     }
 
     // option 1: write
     public void Write()
     {
-
+        string prompt = Prompt.randomPrompt();
+        Console.Write(prompt);
+        string entry = Console.ReadLine();
+        Journal.addEntry(prompt, entry);
     }
 
     // option 2: display
     public void Display()
     {
-
+        Journal.display();
     }
 
     // option 3: load
