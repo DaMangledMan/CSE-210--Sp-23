@@ -2,6 +2,7 @@ public class Menu
 {
     Prompt Prompt = new Prompt();
     Journal Journal = new Journal();
+    csvEditor CSVE = new csvEditor();
     
     // methods
     // menu to select which option you mant
@@ -78,12 +79,49 @@ public class Menu
     // option 3: load
     public void Load()
     {
-
+        string fileName ;
+        Console.Write("What is the name of the file? ");
+        fileName = Console.ReadLine();
+        Journal.loadOldJournal(fileName);
     }
 
     // option 4: save
     public void Save()
     {
+        int choice ;
+        while (true)
+        {
+            try
+            {
+                Console.Write("Do you want to:\n\n1. create a new file / overwrite an existing one \nor\n2. add your new entries to an existing file");
+                choice = int.Parse(Console.ReadLine());
 
+                if (choice >= 1 && choice <= 2)
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Your Input was not one of the expected choices.");
+                }
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("The Input was not in the correct format. Integers only.");
+            }
+        }
+
+        string fileName ;
+        Console.Write("What is the name of the file? ");
+        fileName = Console.ReadLine();
+
+        if (choice == 1)
+        {
+            CSVE.OverWrite(fileName);
+        }
+        else if (choice == 2)
+        {
+            CSVE.Append(fileName);
+        }
     }
 }

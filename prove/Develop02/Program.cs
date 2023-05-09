@@ -1,9 +1,7 @@
-static void main()
-{
-    while (true)
-    {
-        Menu.menu();
-    }
-}
+Menu menu = new Menu();
 
-main();
+
+while (true)
+{
+    menu.menu();
+}

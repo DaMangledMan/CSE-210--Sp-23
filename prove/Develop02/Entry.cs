@@ -3,10 +3,10 @@ public class Entry
     // attributes
     private string _prompt;
     private string _entry;
-    private DateTime _date;
+    private string _date;
 
     // constructor
-    public Entry(string prompt, string entry, DateTime date)
+    public Entry(string prompt, string entry, string date)
     {
         _prompt = prompt;
         _entry = entry;
@@ -20,5 +20,23 @@ public class Entry
         Console.WriteLine($"\nPrompt:\n{_prompt}\n");
         Console.WriteLine($"Entry:\n{_entry}\n");
         Console.WriteLine($"{_date}\n");
+    }
+
+    // returns the prompt as a string
+    public string getPrompt()
+    {
+        return _prompt;
+    }
+
+    // returns the entry as a string
+    public string getEntry()
+    {
+        return _entry;
+    }
+
+    // returns the date as a string
+    public string getDate()
+    {
+        return _date;
     }
 }
