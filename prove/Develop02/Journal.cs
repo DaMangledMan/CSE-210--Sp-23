@@ -3,9 +3,12 @@ public class Journal
     csvEditor CSVE = new csvEditor();
     
     // attributes
-    private List<Entry> _oldJournal;
-    private List<Entry> _newJournal;
+    private List<Entry> _oldJournal = new List<Entry> {};
+    private List<Entry> _newJournal = new List<Entry> {};
 
+    //constructor
+    public Journal()
+    {}
 
     // methods
     // Loads a file as the "old journal"
@@ -13,6 +16,18 @@ public class Journal
     {
         List<Entry> csv = CSVE.Load(fileName);
         _oldJournal = csv;
+    }
+
+    // OverWrites an existing/Creates a new file with the contents of the old and new journal entries
+    public void OverWrite(string fileName)
+    {
+        CSVE.OverWrite(fileName, _oldJournal, _newJournal);
+    }
+
+    // Appends to the end of an existing file with the contents of the new journal entries only
+    public void Append(string fileName)
+    {
+        CSVE.Append(fileName, _newJournal);
     }
 
     // Displays information to terminal

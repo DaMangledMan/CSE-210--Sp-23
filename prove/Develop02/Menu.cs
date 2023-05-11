@@ -2,10 +2,11 @@ public class Menu
 {
     Prompt Prompt = new Prompt();
     Journal Journal = new Journal();
-    csvEditor CSVE = new csvEditor();
     
     // methods
     // menu to select which option you mant
+
+
     public void menu()
     {
         int option;
@@ -13,7 +14,7 @@ public class Menu
         {
             try
             {
-                Console.Write("Which option would you like to choose ( 1 - 5 )?\n");
+                Console.Write("\nWhich option would you like to choose ( 1 - 5 )?\n");
                 Console.WriteLine(" 1. Write\n 2. Display\n 3. Load\n 4. Save\n 5. Quit\n");
                 option = int.Parse(Console.ReadLine());
 
@@ -80,7 +81,7 @@ public class Menu
     public void Load()
     {
         string fileName ;
-        Console.Write("What is the name of the file? ");
+        Console.Write("What is the name of the file?\n");
         fileName = Console.ReadLine();
         Journal.loadOldJournal(fileName);
     }
@@ -93,7 +94,7 @@ public class Menu
         {
             try
             {
-                Console.Write("Do you want to:\n\n1. create a new file / overwrite an existing one \nor\n2. add your new entries to an existing file");
+                Console.Write("\nDo you want to:\n\n1. create a new file / overwrite an existing one \nor\n2. add your new entries to an existing file\n\n");
                 choice = int.Parse(Console.ReadLine());
 
                 if (choice >= 1 && choice <= 2)
@@ -112,16 +113,16 @@ public class Menu
         }
 
         string fileName ;
-        Console.Write("What is the name of the file? ");
+        Console.Write("\nWhat is the name of the file?\n\n5");
         fileName = Console.ReadLine();
 
         if (choice == 1)
         {
-            CSVE.OverWrite(fileName);
+            Journal.OverWrite(fileName);
         }
         else if (choice == 2)
         {
-            CSVE.Append(fileName);
+            Journal.Append(fileName);
         }
     }
 }

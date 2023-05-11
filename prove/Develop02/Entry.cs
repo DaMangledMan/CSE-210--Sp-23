@@ -19,7 +19,7 @@ public class Entry
     {
         Console.WriteLine($"\nPrompt:\n{_prompt}\n");
         Console.WriteLine($"Entry:\n{_entry}\n");
-        Console.WriteLine($"{_date}\n");
+        Console.WriteLine($"{_date}\n\n");
     }
 
     // returns the prompt as a string

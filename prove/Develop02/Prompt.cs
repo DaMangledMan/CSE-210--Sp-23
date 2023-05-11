@@ -20,6 +20,6 @@ public class Prompt
     {
         int index = random.Next(_prompts.Count);
         string prompt = _prompts[index];
-        return prompt;
+        return $"\n{prompt}";
     }
 }
