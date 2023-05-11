@@ -24,12 +24,12 @@ public class Menu
                 }
                 else
                 {
-                    Console.WriteLine("Your Input was not one of the options.");
+                    Console.WriteLine("\nYour Input was not one of the options.");
                 }
             }
             catch (FormatException)
             {
-                Console.WriteLine("the input was not in the correct format. Integers only.");
+                Console.WriteLine("\nthe input was not in the correct format. Integers only.");
             }
         }
 
@@ -66,7 +66,7 @@ public class Menu
     public void Write()
     {
         string prompt = Prompt.randomPrompt();
-        Console.Write(prompt);
+        Console.Write($"\n{prompt}");
         string entry = Console.ReadLine();
         Journal.addEntry(prompt, entry);
     }
@@ -81,9 +81,55 @@ public class Menu
     public void Load()
     {
         string fileName ;
-        Console.Write("What is the name of the file?\n");
-        fileName = Console.ReadLine();
-        Journal.loadOldJournal(fileName);
+        while(true)
+        {
+            try
+            {
+                Console.Write("\nWhat is the name of the file?\n\n");
+                fileName = Console.ReadLine();
+                Journal.loadOldJournal(fileName);
+                break;
+            }
+            catch (Exception ex)  when (ex is IndexOutOfRangeException ||
+                                        ex is FileNotFoundException)
+            {
+                Console.WriteLine("\nNo valid file was found with the given name.\n");
+                int choice2 ;
+                while (true)
+                {
+                    try
+                    {
+                        Console.Write("\nDo you want to continue trying to load a journal (1. yes / 2. no)?\n\n");
+                        choice2 = int.Parse(Console.ReadLine());
+
+                        if (choice2 >= 1 && choice2 <= 2)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("\nYour Input was not one of the expected choices.");
+                        }
+                    }
+                    catch (FormatException)
+                    {
+                        Console.WriteLine("\nThe Input was not in the correct format. Integers only.");
+                    }
+                }
+                if (choice2 == 1)
+                {
+                    continue;
+                }
+                else if (choice2 == 2)
+                {
+                    break;
+                }
+            }
+            catch (ArgumentException)
+            {
+                Console.WriteLine("\nAn input is required to load a Journal.\n");
+            }
+        }
     }
 
     // option 4: save
@@ -113,16 +159,61 @@ public class Menu
         }
 
         string fileName ;
-        Console.Write("\nWhat is the name of the file?\n\n5");
-        fileName = Console.ReadLine();
+        while(true)
+        {
+            try
+            {
+                Console.Write("\nWhat is the name of the file?\n\n");
+                fileName = Console.ReadLine();
+                if (choice == 1)
+                {
+                    Journal.OverWrite(fileName);
+                }
+                else if (choice == 2)
+                {
+                    Journal.Append(fileName);
+                }
+                break;
+            }
+            catch (Exception ex)  when (ex is IndexOutOfRangeException ||
+                                        ex is FileNotFoundException)
+            {
+                Console.WriteLine("\nNo valid file was found with the given name.\n");
+                int choice2 ;
+                while (true)
+                {
+                    try
+                    {
+                        Console.Write("\nDo you want to continue trying to load a journal (1. yes / 2. no)?\n\n");
+                        choice2 = int.Parse(Console.ReadLine());
 
-        if (choice == 1)
-        {
-            Journal.OverWrite(fileName);
-        }
-        else if (choice == 2)
-        {
-            Journal.Append(fileName);
+                        if (choice2 >= 1 && choice2 <= 2)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Your Input was not one of the expected choices.");
+                        }
+                    }
+                    catch (FormatException)
+                    {
+                        Console.WriteLine("The Input was not in the correct format. Integers only.");
+                    }
+                }
+                if (choice2 == 1)
+                {
+                    continue;
+                }
+                else if (choice2 == 2)
+                {
+                    break;
+                }
+            }
+            catch (ArgumentException)
+            {
+                Console.WriteLine("\nAn input is required to load a Journal.\n");
+            }
         }
     }
 }
