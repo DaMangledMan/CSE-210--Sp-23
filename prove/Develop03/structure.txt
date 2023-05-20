@@ -1,0 +1,89 @@
+Classes:
+    Main
+    Display
+    Hide
+    Scripture
+
+
+class Main:
+
+    call Display
+
+    loop [
+        display.currentStateScripture
+
+        if want to quit type quit 
+    ]
+
+
+
+class Display:
+
+    call Scripture
+    
+    call Hide
+
+    attributes N/A 
+
+    methods
+
+        display() : void
+            write(Hide.stringify())
+
+
+
+class Hide
+
+    attributes
+
+        _scripture : List<string>
+
+        _scriptureLength : int
+
+        _hiddenWords : List<int>
+
+    constructor
+
+        Hide (scripture)[
+            _scripture = scripture converted to List<string
+            _scriptureLength = number of words in scripture
+        ]
+
+    methods
+
+        hideThreeWords() : void
+            three random numbers inside range 0 - _scriptureLength
+            add numbers to _hiddenWords List
+
+        stingify() : string
+            convert _scripture to a List<string> seperated at " "
+            replace all digits inside the words at the same indexes as _hiddenWords
+              to "-" (ex. "unto" -> "----")
+            convert the List<string> back into string with " " between every element
+            return the string
+
+
+
+class Scripture
+
+    attributes
+
+        _header : string
+
+        _scripture : string
+
+        _scriptureList : List<string>
+
+    constructor
+
+        Scriputre (header, scripture)[
+
+        ]
+
+    methods
+
+        pub getHeader() : string
+
+        pri listify() : void
+
+        pub getScriptureList() : List<string>
