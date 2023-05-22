@@ -19,6 +19,7 @@ public class Hide
     {
         for (int i = 1; i >= 3; i++)
         {
+            int attempts = 0;
             while (true)
             {
                 int index = rnd.Next(_scriptureLength);
@@ -28,11 +29,48 @@ public class Hide
                     _hiddenWords.Add(index);
                     break;
                 }
+                else if (attempts > _scriptureLength)
+                {
+                    break;
+                }
                 else
                 {
                     continue;
                 }
             }
+        }
+    }
+
+    public string stringify()
+    {
+        List<string> listStringedScripture = new List<string>();
+        int index = 0;
+        foreach (string word in _scripture)
+        {
+            if (_hiddenWords.Contains(index))
+            {
+                string hiddenWord = new string('-', word.Length);
+                listStringedScripture.Add(hiddenWord);
+            }
+            else 
+            {
+                listStringedScripture.Add(word);
+            }
+            index ++;
+        }
+        string stringedSripture = string.Join(" ", listStringedScripture);
+        return stringedSripture;
+    }
+
+    public bool completelyHidden()
+    {
+        if (_hiddenWords.Count() - 1 >= _scriptureLength)
+        {
+            return true;
+        }
+        else 
+        {
+            return false;
         }
     }
 }

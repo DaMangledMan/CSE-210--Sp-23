@@ -30,6 +30,9 @@ class Display:
         display() : void
             write(Hide.stringify())
 
+        completelyHidden() : bool
+            calls completelyHidden from Hide
+
 
 
 class Hide
@@ -56,11 +59,13 @@ class Hide
             add numbers to _hiddenWords List
 
         stingify() : string
-            convert _scripture to a List<string> seperated at " "
             replace all digits inside the words at the same indexes as _hiddenWords
               to "-" (ex. "unto" -> "----")
             convert the List<string> back into string with " " between every element
             return the string
+
+        completelyHidden() : bool
+            returns true if entire class is hidden
 
 
 
