@@ -11,14 +11,16 @@ public class Hide
     public Hide(List<string> scripture)
     {
         _scripture = scripture;
-        _scriptureLength = _scripture.Count() - 1;
+        _scriptureLength = _scripture.Count();
     }
 
     // methods
     public void hideThreeWords()
     {
-        for (int i = 1; i >= 3; i++)
+        Console.WriteLine("hide");
+        for (int i = 1; i < 4; i++)
         {
+            Console.WriteLine("for");
             int attempts = 0;
             while (true)
             {
@@ -35,6 +37,7 @@ public class Hide
                 }
                 else
                 {
+                    attempts ++;
                     continue;
                 }
             }
@@ -64,7 +67,7 @@ public class Hide
 
     public bool completelyHidden()
     {
-        if (_hiddenWords.Count() - 1 >= _scriptureLength)
+        if (_hiddenWords.Count() == _scriptureLength)
         {
             return true;
         }

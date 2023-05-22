@@ -19,6 +19,11 @@ public class Scripture
         return _header;
     }
 
+    public string getScripture()
+    {
+        return _scripture;
+    }
+
     public List<string> getScriptureList()
     {
         return _scriptureList;
