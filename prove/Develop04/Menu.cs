@@ -18,7 +18,7 @@ public class menu
                 try
                 {
                     Console.Write("\nWhich option would you like to choose ( 1 - 4 )?\n");
-                    Console.WriteLine(" 1. Breathing exercise\n 2. Breathing exercise\n 3. Breathing exercise\n 4. Quit\n");
+                    Console.WriteLine(" 1. Breathing exercise\n 2. Reflection exercise\n 3. Listing exercise\n 4. Quit\n");
                     option = int.Parse(Console.ReadLine());
     
                     if (option >= 1 && option <= 4)
@@ -69,7 +69,7 @@ public class menu
         {
             try
             {
-                Console.Write("\nHow long do you want to do the breathing exercise for?\n");
+                Console.Write("\nHow long do you want to do the breathing exercise for (in seconds)?\n");
                 duration = int.Parse(Console.ReadLine());
                 break;
             }
@@ -105,7 +105,7 @@ public class menu
         {
             try
             {
-                Console.Write("\nHow long do you want to do the reflection exercise for?\n");
+                Console.Write("\nHow long do you want to do the reflection exercise for (in seconds)?\n");
                 duration = int.Parse(Console.ReadLine());
                 break;
             }
@@ -147,7 +147,7 @@ public class menu
         {
             try
             {
-                Console.Write("\nHow long do you want to do the listing exercise for?\n");
+                Console.Write("\nHow long do you want to do the listing exercise for (in seconds)?\n");
                 duration = int.Parse(Console.ReadLine());
                 break;
             }
