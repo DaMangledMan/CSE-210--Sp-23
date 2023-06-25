@@ -1,4 +1,4 @@
-public class Menu
+public class Menu1
 {
     Prompt Prompt = new Prompt();
     Journal Journal = new Journal();
@@ -7,7 +7,7 @@ public class Menu
     // menu to select which option you mant
 
 
-    public void menu()
+    public void menu1()
     {
         int option;
         while (true)

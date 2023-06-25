@@ -1,4 +1,4 @@
-public class csvEditor1
+public class csvEditor
 {
 
     // methods

@@ -1,8 +1,8 @@
-Menu menu = new Menu(); 
+Menu1 menu = new Menu1(); 
 
 while (true)
 {
-    menu.menu();
+    menu.menu1();
 }
 
 

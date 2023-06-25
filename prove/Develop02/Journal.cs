@@ -1,6 +1,6 @@
 public class Journal
 {
-    csvEditor CSVE = new csvEditor();
+    csvEditor1 CSVE = new csvEditor1();
     
     // attributes
     private List<Entry> _oldJournal = new List<Entry> {};
