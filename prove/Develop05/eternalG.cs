@@ -12,18 +12,34 @@ public class Eternal : Goal
     }
 
     // methods
-    public void addContinue()
+    public override int addContinue()
     {
         _continuePoints ++;
+        return 2;
     }
 
-    public int getContinuePoints()
+    public override int getContinuePoints()
     {
         return _continuePoints;
+    }
+
+    public override int getCompletePoints()
+    {
+        throw new NotImplementedException();
     }
 
     public override string stringifyInformation()
     {
         return $"Et,{_name},{_description},{_continuePoints},{_numberOfContinues}";
+    }
+
+    public override bool getFinished()
+    {
+        throw new NotImplementedException();
+    }
+
+    public override int getNumberContinues()
+    {
+        return _numberOfContinues;
     }
 }

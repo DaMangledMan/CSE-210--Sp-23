@@ -12,7 +12,17 @@ public abstract class Goal
     }
 
     // methods
+    public abstract int addContinue();
+
     public abstract string stringifyInformation();
+
+    public abstract int getContinuePoints();
+
+    public abstract int getCompletePoints();
+
+    public abstract bool getFinished();
+
+    public abstract int getNumberContinues();
 
     public string getName()
     {

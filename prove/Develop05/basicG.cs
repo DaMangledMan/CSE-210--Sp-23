@@ -13,12 +13,18 @@ public class Basic : Goal
     }
 
     // methods
-    public void setFinished()
+    public override int addContinue()
     {
         _finished = true;
+        return 1;
     }
 
-    public int getCompletePoints()
+    public override int getContinuePoints()
+    {
+        throw new NotImplementedException();
+    }
+
+    public override int getCompletePoints()
     {
         return _completePoints;
     }
@@ -26,5 +32,15 @@ public class Basic : Goal
     public override string stringifyInformation()
     {
         return $"Ba,{_name},{_description},{_completePoints},{_finished}";
+    }
+
+    public override bool getFinished()
+    {
+        return _finished;
+    }
+
+    public override int getNumberContinues()
+    {
+        throw new NotImplementedException();
     }
 }

@@ -18,21 +18,22 @@ public class Bonus : Goal
     }
 
     // methods
-    public void addContinue()
+    public override int addContinue()
     {
         _numberOfContinues ++;
         if (_numberOfContinues >= _continuesGoal)
         {
             _finished = true;
         }
+        return 3;
     }
 
-    public int getContinuePoints()
+    public override int getContinuePoints()
     {
         return _continuePoints;
     }
 
-    public int getCompletePoints()
+    public override int getCompletePoints()
     {
         return _completePoints;
     }
@@ -40,5 +41,15 @@ public class Bonus : Goal
     public override string stringifyInformation()
     {
         return $"Bo,{_name},{_description},{_continuePoints},{_completePoints},{_continuesGoal},{_numberOfContinues},{_finished}";
+    }
+
+    public override bool getFinished()
+    {
+        return _finished;
+    }
+
+    public override int getNumberContinues()
+    {
+        return _numberOfContinues;
     }
 }

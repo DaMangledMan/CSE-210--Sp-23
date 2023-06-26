@@ -4,7 +4,7 @@ public class Menu
     csvEditor CSV = new csvEditor();
     
     // attributes
-    private List<Goal> goalsList = new List<Goal> ();
+    private List<Goal> _goalsList = new List<Goal> ();
 
     // constructor
     // n/a
@@ -24,11 +24,11 @@ public class Menu
                 try
                 {
                     displayPoints();
-                    Console.Write("\nWhich option would you like to choose ( 1 - 5 )?\n");
-                    Console.WriteLine(" 1. Create\n 2. List\n 3. Save\n 4. Record\n 5. Quit\n");
+                    Console.Write("\nWhich option would you like to choose ( 1 - 4 )?\n");
+                    Console.WriteLine(" 1. Create\n 2. List\n 3. Record\n 4. Quit\n");
                     option = int.Parse(Console.ReadLine());
     
-                    if (option >= 1 && option <= 5)
+                    if (option >= 1 && option <= 4)
                     {
                         break;
                     }
@@ -55,13 +55,9 @@ public class Menu
             }
             else if (option == 3)
             {
-                save();
-            }
-            else if (option == 4)
-            {
                 record();
             }
-            else if (option == 5)
+            else if (option == 4)
             {
                 quit();
             }
@@ -151,7 +147,7 @@ public class Menu
                 }
 
                 Basic n = new Basic(name, description, completePoints);
-                goalsList.Add(n);
+                _goalsList.Add(n);
             }
 
             else if (option == 2)
@@ -204,7 +200,7 @@ public class Menu
                 }
 
                 Eternal n = new Eternal(name, description, continuePoints);
-                goalsList.Add(n);
+                _goalsList.Add(n);
             }
 
             else if (option == 3)
@@ -287,7 +283,7 @@ public class Menu
                 }
 
                 Bonus n = new Bonus(name, description, continuePoints, completePoints, continuesGoal);
-                goalsList.Add(n);
+                _goalsList.Add(n);
             }
         }
     }
@@ -296,37 +292,92 @@ public class Menu
     {
         Console.Clear();
         Console.WriteLine("\n\n\n");
-        if (goalsList.Count() == 0)
+        if (_goalsList.Count() == 0)
         {
             Console.WriteLine("There are no goals to list.");
             return;
         }
 
-        foreach(Goal i in goalsList)
+        foreach(Goal i in _goalsList)
         {
             Console.WriteLine(i.stringifyInformation());
         }
     }
 
-    private void save()
-    {      
-        Console.Clear();
-
-        List<string> goalsListStrings = new List<string>();
-        foreach (Goal i in goalsList)
-        {
-            goalsListStrings.Add(i.stringifyInformation());
-        }
-        CSV.OverWrite("goalsSaveFile.csv", goalsListStrings);
-    }
-
     private void record()
     {
+        Console.Clear();
+        Console.WriteLine("\n\n\n");
+        if (_goalsList.Count() == 0)
+        {
+            Console.WriteLine("There are no goals to list.");
+            return;
+        }
 
+        int optionNumber = 0;
+        foreach(Goal i in _goalsList)
+        {
+            optionNumber ++;
+            Console.WriteLine("Option: Type, Name, Description, Point Information, Completion Information");
+            Console.WriteLine($" {optionNumber}. : {i.stringifyInformation()}");
+        }
+
+        int option;
+        while (true)
+        {
+            try
+            {
+                displayPoints();
+                Console.Write($"\nWhich option would you like to choose ( 1 - {optionNumber} )?\n");
+                option = int.Parse(Console.ReadLine());
+
+                if (option >= 1 && option <= optionNumber)
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("\nYour Input was not one of the options.\n\nclick 'ENTER' to continue");
+                    Console.ReadLine();
+                }
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("\nThe input was not in the correct format. Integers only.\n\nclick 'ENTER' to continue");
+                Console.ReadLine();
+            }
+        }
+
+        int goalType = _goalsList[option - 1].addContinue();
+        if (goalType == 1)
+        {
+            points.addPoints(_goalsList[option - 1].getCompletePoints());
+        }
+        else if (goalType == 2)
+        {
+            points.addPoints(_goalsList[option - 1].getContinuePoints());
+        }
+        else if (goalType == 3)
+        {
+            points.addPoints(_goalsList[option - 1].getContinuePoints());
+            if (_goalsList[option - 1].getFinished())
+            {
+                points.addPoints(_goalsList[option - 1].getCompletePoints());
+            }
+        }
     }
 
     private void quit()
     {
+        Console.Clear();
+
+        List<string> goalsListStrings = new List<string>();
+        foreach (Goal i in _goalsList)
+        {
+            goalsListStrings.Add(i.stringifyInformation());
+        }
+        CSV.OverWrite("goalsSaveFile.csv", goalsListStrings);
+
         Environment.Exit(1);
     }
 
@@ -339,17 +390,27 @@ public class Menu
             if (i[0] == "Ba")
             {
                 Basic n = new Basic(i[1], i[2], int.Parse(i[3]), bool.Parse(i[4]));
-                goalsList.Add(n);
+                _goalsList.Add(n);
+                if (n.getFinished())
+                {
+                    points.addPoints(n.getCompletePoints());
+                }
             }
             else if (i[0] == "Et")
             {
                 Eternal n = new Eternal(i[1], i[2], int.Parse(i[3]), int.Parse(i[4]));
-                goalsList.Add(n);
+                _goalsList.Add(n);
+                points.addPoints(n.getNumberContinues() * n.getContinuePoints());
             }
             else if (i[0] == "Bo")
             {
                 Bonus n = new Bonus(i[1], i[2], int.Parse(i[3]), int.Parse(i[4]), int.Parse(i[5]), int.Parse(i[6]), bool.Parse(i[7]));
-                goalsList.Add(n);
+                _goalsList.Add(n);
+                points.addPoints(n.getNumberContinues() * n.getContinuePoints());
+                if (n.getFinished())
+                {
+                    points.addPoints(n.getCompletePoints());
+                }
             }
         }
     }
