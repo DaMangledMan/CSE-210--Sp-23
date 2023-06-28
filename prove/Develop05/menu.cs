@@ -148,6 +148,7 @@ public class Menu
 
                 Basic n = new Basic(name, description, completePoints);
                 _goalsList.Add(n);
+                break;
             }
 
             else if (option == 2)
@@ -201,6 +202,7 @@ public class Menu
 
                 Eternal n = new Eternal(name, description, continuePoints);
                 _goalsList.Add(n);
+                break;
             }
 
             else if (option == 3)
@@ -284,6 +286,7 @@ public class Menu
 
                 Bonus n = new Bonus(name, description, continuePoints, completePoints, continuesGoal);
                 _goalsList.Add(n);
+                break;
             }
         }
     }
@@ -298,10 +301,17 @@ public class Menu
             return;
         }
 
+        int optionNumber = 0;
+        Console.WriteLine("\n\nOption: Type, Name, Description, Point Information, Completion Information\n");
         foreach(Goal i in _goalsList)
         {
-            Console.WriteLine(i.stringifyInformation());
+            optionNumber ++;
+            Console.Write($" {optionNumber}. : ");
+            i.printInformation();
         }
+
+        Console.WriteLine("\n\n\nclick 'ENTER' to continue");
+        Console.ReadLine();
     }
 
     private void record()
@@ -315,11 +325,12 @@ public class Menu
         }
 
         int optionNumber = 0;
+        Console.WriteLine("\n\nOption: Type, Name, Description, Point Information, Completion Information\n");
         foreach(Goal i in _goalsList)
         {
             optionNumber ++;
-            Console.WriteLine("Option: Type, Name, Description, Point Information, Completion Information");
-            Console.WriteLine($" {optionNumber}. : {i.stringifyInformation()}");
+            Console.Write($" {optionNumber}. : ");
+            i.printInformation();
         }
 
         int option;
@@ -328,7 +339,7 @@ public class Menu
             try
             {
                 displayPoints();
-                Console.Write($"\nWhich option would you like to choose ( 1 - {optionNumber} )?\n");
+                Console.WriteLine($"\nWhich option would you like to choose ( 1 - {optionNumber} )?\n");
                 option = int.Parse(Console.ReadLine());
 
                 if (option >= 1 && option <= optionNumber)

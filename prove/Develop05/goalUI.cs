@@ -24,6 +24,8 @@ public abstract class Goal
 
     public abstract int getNumberContinues();
 
+    public abstract void printInformation();
+
     public string getName()
     {
         return _name;

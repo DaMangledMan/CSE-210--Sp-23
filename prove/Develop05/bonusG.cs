@@ -52,4 +52,16 @@ public class Bonus : Goal
     {
         return _numberOfContinues;
     }
+
+    public override void printInformation()
+    {
+        if (_finished)
+        {
+            Console.WriteLine($"Bo, {_name}, {_description}, {_continuePoints}, {_completePoints}, {_continuesGoal}, {_numberOfContinues}, Finished\n");
+        }
+        else if (!_finished)
+        {
+            Console.WriteLine($"Bo, {_name}, {_description}, {_continuePoints}, {_completePoints}, {_continuesGoal}, {_numberOfContinues}, not Finished\n");
+        }
+    }
 }

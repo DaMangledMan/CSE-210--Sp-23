@@ -34,6 +34,18 @@ public class Basic : Goal
         return $"Ba,{_name},{_description},{_completePoints},{_finished}";
     }
 
+    public override void printInformation()
+    {
+        if (_finished)
+        {
+            Console.WriteLine($"Ba, {_name}, {_description}, {_completePoints}, Finished\n");
+        }
+        else if (!_finished)
+        {
+            Console.WriteLine($"Ba, {_name}, {_description}, {_completePoints}, not Finished\n");
+        }
+    }
+
     public override bool getFinished()
     {
         return _finished;

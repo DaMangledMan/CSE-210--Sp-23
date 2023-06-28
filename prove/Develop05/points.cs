@@ -7,11 +7,6 @@ public class Points
     // n/a
 
     // methods
-    public void setPointTotal(int points)
-    {
-        _pointTotal = points;
-    }
-
     public void addPoints(int points)
     {
         _pointTotal += points;

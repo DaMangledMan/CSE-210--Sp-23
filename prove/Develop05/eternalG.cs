@@ -42,4 +42,9 @@ public class Eternal : Goal
     {
         return _numberOfContinues;
     }
+
+    public override void printInformation()
+    {
+        Console.WriteLine($"Et, {_name}, {_description}, {_continuePoints}, {_numberOfContinues}\n");
+    }
 }
